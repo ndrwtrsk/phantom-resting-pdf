@@ -16,15 +16,15 @@ var express = require('express');
 var app = express();
 
 app.get('/1-page', function(req, res) {
-  pipePDF(res, '1-page.html');  
+  pipePDF(res, './html/1-page.html');  
 });
 
 app.get('/2-page', function(req, res) {
-  pipePDF(res, '2-page.html');
+  pipePDF(res, './html/2-page.html');
 });
 
 app.get('/3-page', function(req, res) {
-  pipePDF(res, '1-page.html');
+  pipePDF(res, './html/1-page.html');
 });
 
 var pipePDF = (res, filePath) => {
