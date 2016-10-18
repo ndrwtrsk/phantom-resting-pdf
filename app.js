@@ -1,7 +1,11 @@
+const MIN_NUMBER_OF_WORKERS = 1;
+const MAX_NUMBER_OF_WORKERS = 6;
 const argsLen = process.argv.length;
 const numberOfWorkers = parseInt(process.argv[2]);
 
-if (argsLen != 3 || (numberOfWorkers <= 0 || numberOfWorkers > 5) || typeof numberOfWorkers != 'number' ) {
+
+
+if (argsLen != 3 || (numberOfWorkers <= MIN_NUMBER_OF_WORKERS || numberOfWorkers > MAX_NUMBER_OF_WORKERS) || typeof numberOfWorkers != 'number' ) {
   console.log("\n>>> Please provide the number of workers!");
   console.log(">>> It should be bigger than 0 and smaller 6 Curreng count: " + numberOfWorkers + "\n");
   console.log(">>> It also should be a number... Is it a number? " + typeof numberOfWorkers + "\n");
@@ -26,6 +30,10 @@ app.get('/2-page', function(req, res) {
 app.get('/3-page', function(req, res) {
   pipePDF(res, './html/3-page.html');
 });
+
+app.get('/3-page-random-values', (req, res) => {
+  pipePDF(res, './html/3-page-random-values.html')
+})
 
 var pipePDF = (res, filePath) => {
   conversion({
