@@ -16,7 +16,7 @@ var express = require('express');
 var app = express();
 
 app.get('/1-page', function(req, res) {
-  pipePDF(res, './html/1-page.html');  
+  pipePDF(res, './html/1-page.html');
 });
 
 app.get('/2-page', function(req, res) {
@@ -24,7 +24,7 @@ app.get('/2-page', function(req, res) {
 });
 
 app.get('/3-page', function(req, res) {
-  pipePDF(res, './html/1-page.html');
+  pipePDF(res, './html/3-page.html');
 });
 
 var pipePDF = (res, filePath) => {
