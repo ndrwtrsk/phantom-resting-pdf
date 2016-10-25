@@ -2,15 +2,18 @@
   "name": "pdf-rest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dot": "^1.0.3",
     "express": "^4.14.0",
     "express-fileupload": "0.0.5",
-    "phantom-html-to-pdf": "^0.4.7"
+    "phantom-html-to-pdf": "^0.4.7",
+    "body-parser": "latest",
+    "multer": "latest"
   }
 }
