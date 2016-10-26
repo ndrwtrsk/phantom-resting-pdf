@@ -31,19 +31,10 @@ dot.templateSettings = {
 };
 
 var dots = dot.process({path: "./templates"});
-
 var app = express();
 var fs = require('fs');
-// app.use();
-var multer = require('multer');
-var upload = multer();
-
-
-
 
 app.get('/dot', bodyParser.json(), (req, res) => {
-
-
 
 });
 
@@ -71,32 +62,28 @@ app.get('/3-page-random-data-length', (req, res) => {
   pipePDF(res, './html/3-page-random-data-length.html');
 });
 
-
 app.post('/generate-pdf-from-html', bodyParser.text({type: 'text/html'}), (req, res) => {
-
   conversion({
     html: req.body,
     fitToPage: true,
     waitForJS: true
   }, (err, pdf) => {
-    // console.log(pdf);
-    var fileStream = fs.createWriteStream('best.pdf');
-    pdf.stream.pipe(fileStream);
+    if  (err) console.error(err);
     pdf.stream.pipe(res);
   });
 });
 
-app.post('/generate-pdf-from-data', bodyParser.json(), (req, res) => {
-  var dataModel = JSON.stringify(req.body);
-  var renderResult = dots.gen({data:dataModel});
-  console.log('Processing dot...');
+app.post('/generate-pdf-from-data', bodyParser.text({type:'text/plain'}), (req, res) => {
+  var renderResult = dots.test({data:req.body});
   conversion({
     html: renderResult,
     fitToPage: true,
-    waitForJS: true
+    waitForJS: true,
+    paperSize:{
+      format: 'A3'
+    }
   }, (err, pdf) => {
     if(err) res.send(err);
-    console.log("generated..");
     pdf.stream.pipe(res);
   });
 });

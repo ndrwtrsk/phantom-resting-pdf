@@ -63,8 +63,6 @@
 
         var barChart2 = new google.visualization.BarChart(document.getElementById('bar2_div'));
         barChart2.draw(data, options);
-        console.log(google);
-
     }
 
 </script>
