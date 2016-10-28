@@ -88,6 +88,20 @@ app.post('/generate-pdf-from-data', bodyParser.text({type:'text/plain'}), (req, 
   });
 });
 
+
+app.post('/generate-pdf-from-data-and-dot-template', bodyParser.json(), (req, res) => {
+  var tempFn = dot.template(req.body.html);
+  var generatedHtml = tempFn({data: req.body.data});
+  conversion({
+    html: generatedHtml,
+    fitToPage: true,
+    waitForJS: true
+  }, (err, pdf) => {
+    if(err) res.send(err);
+    pdf.stream.pipe(res);
+  });
+});
+
 var pipePDF = (res, filePath) => {
   conversion({
     url: filePath,
